@@ -1,4 +1,4 @@
-#Generating ntuples
+# Generating ntuples
 
 Scripts used for performing (hadronic and leptonic) pre-selection on Delphes files. Requires Delphes library, follow instructions for installation:
 
