@@ -6,7 +6,17 @@ Add instructions: follow setup of `flashggFinalFit`, switch to `jonathon-langfor
 
 ## Background model
 
+The scripts for the background model live in `background_model/`
+
+For the background model building, you need to checkout the `flashggFinalFit` directory from git@github.com:cms-analysis/flashggFinalFit.git (run under `CMSSW_7_4_7`. 
+
+You need to copy the following files into the `Background/test` directory: `fTest.cpp`,  `makeBkgPlots.cpp`,  `plotweightedbands.cpp` and compile with `make`. (Note the last .cpp file will be needed later for the diphoton mass plots!) 
+
+* First, to combine the various background MC workspaces, use the two scripts ,`background_model/combineData_leptonic.C` and `background_model/combineData.C`  - make sure to change the path at the top to the appropriate input workspaces. 
+* Next, run the fTest and make the background workspace for combine using these scripts:  `background_model/edRunBackgroundScripts_leptonic.sh` and `background_model/edRunBackgroundScripts.sh`. This creates some simple plots which show the fits to the MC 
+
 ## Extracting results
+
 ### Datacards
 The final datacards used in FTR-18-020 are included in the `ftr-18-020_approval/datacards/` directory. These are as follows:
 
@@ -44,6 +54,22 @@ Add the option: --X-rescale-nuisance THU_* 0.50 to scale all theory uncert. down
 
 ### Extracting results
 The following combine commands are used to run the fits:
+
+#### Diphoton mass plots 
+
+Go into the `background_model` folder again. Now copy the file `background_model/s_sb_errorbands_noMuhat.sh` into the folder `flashggFinalFit/Plots/FinalResults/scripts/`. 
+
+There is a script which will make all of the plots for you : `background_model/toys.sh`.
+
+The first step throws toys from the best fit model and the second takes those toys and converts them into the post-fit plots for each category. Make sure you already copied this file `plotweightedbands.cpp` into `flashggFinalFit/Background/test` from before. 
+
+Note, both of these require the post-fit model, this is called `inputfile.root` and comes from the default model after running the following (rename the output file of course) 
+
+```
+combine  datacard.root -M MultiDimFit -m 125.09 --expectSignal 1 --saveToys --saveWorkspace
+```
+
+It assumes there is a parameter ggHScale which scales the ggH and VH components!
 
 #### Differential cross sections
 ```

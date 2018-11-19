@@ -7,11 +7,6 @@ This repository contains the scripts used in the FTR-18-020 workflow. For inform
  * `ntuples`: preselection (hadronic + leptonic channels) by skimming of Delphes files (eos). Outputs flat ntuples to be merged. Also create ntuples for systematic variations.
  * `ws_gen`: apply BDT selection, output RooFit S and B workspaces: split up by pT(H) x production mode x reco category (pT(gg)xBDT)
  * `systematics`: scripts for calculating systematic yield variations.
- * `fitting`: extracting S + B models. Trilinear physics model and datacards. Instructions on how to extract results via combine.
- * `plotting`: scripts for plotting 
-
-To add (from Nick):
-
- * BDT training
- * Background modelling script
- * S+B fit plotting script
+ * `fitting`: extracting S + B models. Trilinear physics model and datacards. Instructions on how to extract results via combine. 
+ * `plotting`: scripts for plotting
+ * `training`: scripts for training BDT + making variable plots 
